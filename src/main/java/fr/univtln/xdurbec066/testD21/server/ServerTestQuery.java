@@ -25,13 +25,16 @@ public class ServerTestQuery {
         Client c = Client.create(cc);
         WebResource webResource = c.resource("http://localhost:9999");
 
-        Utilisateur d1 = new Utilisateur("Nom","prenom");
-        webResource.path("utilisateur").type(MediaType.APPLICATION_JSON).post(d1);
+        Utilisateur u1 = new Utilisateur("NomTest","prenomTest");
+        webResource.path("utilisateur").type(MediaType.APPLICATION_JSON).post(u1);
 
 
-        String responseMsg = webResource.path("utilisateur/id/13").get(String.class);
+        Utilisateur u2 = webResource.path("utilisateur/id/13").get(Utilisateur.class);
 
-        System.out.println(responseMsg);
+        System.out.println(u2);
+
+        u2.setNom("ApresChangement");
+        webResource.path("utilisateur").type(MediaType.APPLICATION_JSON).put(u2);
 
 
 

@@ -19,8 +19,8 @@ public class UtilisateurService {
     @GET
     @Produces("application/json")
     @Path("/id/{id}")
-    public static String userById(@PathParam("id") int id) {
-        return Utilisateur.findById(id).toString();
+    public static Utilisateur userById(@PathParam("id") int id) {
+        return Utilisateur.findById(id);
     }
 
 
